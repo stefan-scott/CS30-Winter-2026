@@ -9,15 +9,43 @@
 //               targeting 60 times per second
 //  
 //           screen is updated at bottom of draw
+
+// ---- Global Variable Section -----
+// we can DECLARE variables here
+// we can INITIALIZE variables with 
+//     simple data types (num, strings)
+//    > don't have access to system variables
+let circleX = 200;
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(500, 400);
 }
 
 function draw() {
-  background(0); //wipes the screen
+  // repeats over and over (automatically) 60fps
+  // aim to keep this TIDY
+  background(100); //wipes the screen
+  //drawTwoCircles();
+  fiveCircles();
+}
 
-  //     x   y   dia
-  circle(0, 0, 50);
+function fiveCircles(){
+
+}
+
+function drawTwoCircles(){
+  
+  
+  //   R     G    B
+  fill(200, 100, 20);
+  stroke("#00FF00")
+  //     x          y  dia
+  circle(circleX, 100, 50);
+
+  // SECOND CIRCLE
+  fill("red");
+  noStroke();  //noFill()
+  circle(width/2, height/2, 200);
 }
 
 
