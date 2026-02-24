@@ -1,9 +1,19 @@
 // Multiple Keypress Detection
 // and --- Drawing Practice ---
+// date
 // Mr. Scott
+// 1-line description
+
+
+
+//Global Vars - simple data only
+//            - no system vars
+let centerX;  //declare only
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  centerX = width/2;
+  
 }
 
 function checkMulti(){

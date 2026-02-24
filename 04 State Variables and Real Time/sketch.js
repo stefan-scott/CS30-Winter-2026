@@ -10,6 +10,7 @@ let startTime;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  rectMode(CENTER);
   startTime = millis();
 }
 
@@ -32,6 +33,7 @@ function manageTime() {
   // (and update shapeState) once every
   // 1000 milliseconds.
   let elapsedTime = millis() - startTime;
+  text()
   if (elapsedTime > 1000) {
     updateState();
     startTime = millis();
@@ -59,7 +61,7 @@ function drawShape() {
       square(x, y, 150);
       break;
     case 2:
-      triangle(x - 50, y + 50, x + 50, y + 50, x, y - 25);
+      triangle(x - 80, y + 80, x + 80, y + 80, x, y - 80);
       break;
     case 3:
       for (let i = 0; i < 30; i++) {
