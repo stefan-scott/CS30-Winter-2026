@@ -49,6 +49,8 @@ function draw() {
   noiseCircle();
 }
 
+
+
 function noiseCircle(){
   //draw a fixed circle with randomly
   //changing (but smooth!) diameter
