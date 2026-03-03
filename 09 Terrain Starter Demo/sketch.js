@@ -1,0 +1,34 @@
+// Terrain Starter
+
+let rectWidth = 5;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  fill(0);
+ // noLoop(); //can leave this for now.
+}
+
+function generateTerrain(){
+  //using a loop, construct a number
+  //of side by side rectangles of 
+  //random height, to be 2D terrain
+  for(let x = 0; x < width; x+=rectWidth){
+    //generate random() (negative) height
+    //eventually replace this with using noise()
+    let rectHeight = random(0, height*0.75);
+    
+    
+    rect(x,height,rectWidth,-rectHeight);
+  }
+}
+
+function draw() {
+  //stabilize my random values once per frame
+  //this needs to get adapted for noise() once
+  //we switch out of random.
+  randomSeed(25);
+
+
+  background(220);
+  generateTerrain();
+}
