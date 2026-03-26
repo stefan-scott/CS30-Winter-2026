@@ -8,12 +8,15 @@ let reach = 150;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  background(0);
 }
 
 function draw() {
-  background(220);
+  background(0,40);
   //if no deletions, loop by item
   for(let n of nodes){
+    n.move();
+    n.connect(nodes);
     n.display();
   }
 }
@@ -49,6 +52,41 @@ class csNode{
     fill(this.c);
     noStroke();
     circle(this.x, this.y, this.size);
+  }
+
+  move(){
+    //use perlin noise for x,y movement
+    let xSpeed = noise(this.xTime);  //0-1
+    xSpeed = map(xSpeed, 0, 1, -this.maxSpeed, this.maxSpeed);
+    this.xTime += this.timeShift;
+
+    this.x += xSpeed;
+    if(this.x < 0) this.x = width;
+    else if (this.x > width) this.x = 0;
+
+    //Do the same thing for y component
+    let ySpeed = noise(this.yTime);
+    ySpeed = map(ySpeed, 0, 1, -this.maxSpeed, this.maxSpeed);
+    this.yTime += this.timeShift;
+
+    this.y += ySpeed;
+    if(this.y < 0) this.y = height;
+    else if(this.y > height) this.y = 0;
+  }
+
+  connect(nodeArray){
+    //check if the current csNode is close to any other
+    //csNode, and if so join with a line.
+    stroke(this.c);
+    for(let n of nodeArray){
+      //this.x,this.y   n.x, n.y
+      if(n !== this){ //don't compare to yourself
+        let d = dist(this.x,this.y,n.x,n.y);
+        if(d < reach){ //the two nodes ARE close...
+          line(this.x, this.y, n.x, n.y);
+        }
+      } 
+    }
   }
 
 }
