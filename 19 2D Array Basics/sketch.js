@@ -23,6 +23,18 @@ function setup() {
 function draw() {
   background(220);
   renderGrid();
+  textSize(20);
+  fill(255,0,0);
+  text(getCurrentX()+","+getCurrentY(),mouseX, mouseY)
+}
+
+function flip(x,y){
+  if(grid[y][x] === 0) grid[y][x] = 255;
+  else grid[y][x] = 0;
+}
+
+function mousePressed(){
+  flip(getCurrentX(), getCurrentY());
 }
 
 function renderGrid(){
@@ -35,4 +47,16 @@ function renderGrid(){
       square(x*tileSize, y*tileSize, tileSize);
     }
   }
+}
+
+function getCurrentX(){
+  //determine the current col position of mouse
+  let constrainedX = constrain(mouseX, 0, width-1);
+  return floor(constrainedX / tileSize);
+}
+
+function getCurrentY(){
+  //determine the current row position of mouse
+  let constrainedY = constrain(mouseY, 0, height-1);
+  return floor(constrainedY / tileSize);
 }
