@@ -34,7 +34,21 @@ function flip(x,y){
 }
 
 function mousePressed(){
-  flip(getCurrentX(), getCurrentY());
+  //only do a flip if mouse is on the Canvas
+  if(mouseX < width && mouseY < height){
+    
+    let x = getCurrentX();
+    let y = getCurrentY();
+
+    // ALWAYS:
+    flip(x, y);
+
+    // IF THEY EXIST:
+    // flip the cardinal (NSEW) neighbours
+    if(x-1 >= 0) flip(x-1, y);
+    if(y-1 >= 0) flip(x, y-1);
+  }
+  
 }
 
 function renderGrid(){
