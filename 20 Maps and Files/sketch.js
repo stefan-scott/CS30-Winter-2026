@@ -5,14 +5,14 @@
 let textFile;
 let imgFile, rows, cols, colorMap;
 
-function preload(){
+async function loadAssets(){
   textFile = loadStrings("assets/info.txt");
   imgFile = loadStrings("assets/colorImage.txt");
 }
 
-function setup() {
+async function setup() {
   createCanvas(windowWidth, windowHeight);
-  //await loadAssets();
+  await loadAssets();
   noLoop();
 
   
