@@ -8,6 +8,7 @@
 
 let myImage;
 let myVideo;
+let oldPixels;
 
 function preload(){
   //called BEFORE setup. Won't conclude
@@ -23,6 +24,7 @@ function setup() {
   //myVideo.hide();
 }
 
+
 function draw() {
   background(220);
   //image(myImage, 0,0);   //STILL IMAGE
@@ -31,11 +33,31 @@ function draw() {
   loadPixels();  //dumps data from canvas into array
   background(0);
   
-  // boost();
+  if(frameCount > 1){
+    // boost();
   // greyscale();
   // updatePixels();
   // textImage();
-  randomSpots();
+ // randomSpots();
+//  majorityColor();
+edge();
+  }
+  
+
+  oldPixels = structuredClone(pixels);
+}
+
+function edge(){
+  let threshold = map(mouseX, 0, width, 0, 200);
+  for(let x = 2 ; x < width-2; x++){
+    for(let y = 2; y < height-2; y++){
+
+      if(dist(getRed(x-1,y),getGreen(x-1,y),getBlue(x-1,y),getRed(x,y),getGreen(x,y),getBlue(x,y))>threshold){
+        fill(255,255,255);
+        square(x,y,3);
+      }
+    }
+  }
 }
 
 function randomSpots(){
@@ -61,6 +83,28 @@ function getColor(x,y){
   let g = pixels[index+1];
   let b = pixels[index+2];
   return color(r,g,b);
+}
+
+function setColor(x,y,c){
+  setPixel(x,y,)
+}
+
+function getRed(x,y){
+  //return color located at an x,y coordinate
+  let index = ((y*width) + x)*4;
+  return pixels[index];
+}
+
+function getGreen(x,y){
+  //return color located at an x,y coordinate
+  let index = ((y*width) + x)*4;
+  return pixels[index+1];
+}
+
+function getBlue(x,y){
+  //return color located at an x,y coordinate
+  let index = ((y*width) + x)*4;
+  return pixels[index+2];
 }
 
 function textImage(){
